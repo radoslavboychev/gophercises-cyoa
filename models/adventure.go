@@ -1,6 +1,7 @@
 package models
 
 import (
+	"html/template"
 	"log"
 	"net/http"
 	"strings"
@@ -22,8 +23,14 @@ type Adventure struct {
 
 type Story map[string]Adventure
 
-func (s Story) httpHandler(arc string, w http.ResponseWriter) {
-	t, err := cyoaTemplate.Clone()
+func (s Story) httpHandler(filename, arc string, w http.ResponseWriter) error {
+	r := template.Must(template.ParseFiles(filename))
+	t, err := r.Clone()
+	if err != nil {
+		return nil
+	}
+	data := s[arc]
+	return t.Execute(w, data)
 }
 
 func (s Story) ServeHTTP(w http.ResponseWriter, r *http.Request) {
