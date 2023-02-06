@@ -28,4 +28,3 @@ func ReadJSON(filename string) (models.Story, error) {
 func MakeTemplate(filename string) *template.Template {
 	return template.Must(template.ParseFiles(filename))
 }
-
