@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>CHOOSE YOUR OWN ADVENTURE - {{.Title}}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>CYOA</h1>
+            {{template "storyArc"}}
+        </div>
+    </body>
+    <style>
+        a {
+            display: block;
+            padding: 0.25em;
+            margin: 1em;
+        }
+    </style>
+</html>
+
+
+{{define "storyArc"}}
+<h2>{{.Title}}</h2>
+{{range .Story}}
+<p>{{.}}</p>
+{{end}}
+{{if .Options}}
+    {{range .Options}}
+        <a href="{{.Arc}}">{{.Text}}</a>
+    {{end}}
+    {{else}}
+    {{<p>End</p>}}
+    {{end}}
+    {{end}}
