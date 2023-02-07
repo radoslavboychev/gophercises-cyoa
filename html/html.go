@@ -5,6 +5,7 @@ import (
 	"log"
 )
 
+// LoadTemplate parses files from an HTML
 func LoadTemplate(filename string) {
 	t := template.New("Adventure")
 	t, err := t.ParseFiles(filename)
@@ -14,6 +15,7 @@ func LoadTemplate(filename string) {
 	}
 }
 
+// ParseTemplate parses an HTML template from a file, returning a template
 func ParseTemplate(filename string) (*template.Template, error) {
 	parsedTemplate, err := template.ParseFiles(filename)
 	if err != nil {

@@ -1,43 +1,65 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>CHOOSE YOUR OWN ADVENTURE - {{.Title}}</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    </head>
-    <body>
-        <div class="container">
-            <h1>CYOA</h1>
-            {{template "storyArc"}}
-        </div>
-    </body>
-    <style>
-        a {
-            display: block;
-            padding: 0.25em;
-            margin: 1em;
-        }
-    </style>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    {{template "storyArc" .}}
+  </div>
+</body>
+
+
+<style>
+  a {
+    background-color:rgb(0, 98, 137);
+    display: flex;
+    padding: 2em;
+    margin: 1em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: aliceblue;
+  }
+  a:hover {
+    color: rgb(65, 65, 65);
+    background-color: whitesmoke;
+  }
+
+  p {
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+
+  body {
+    background-color: rgb(255, 195, 195);
+  }
+
+  h2 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+
+</style>
+
+
+<!-- jquery & Bootstrap JS -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+</script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+</script>
 </html>
 
-
 {{define "storyArc"}}
-<h2>{{.Title}}</h2>
-{{range .Story}}
-<p>{{.}}</p>
-{{end}}
-{{if .Options}}
+  <h1>{{.Title}}</h1>
+  {{range .Story}}
+    <p>{{.}}</p>
+  {{end}}
+  {{if .Options}}
     {{range .Options}}
-        <a href="{{.Arc}}">{{.Text}}</a>
+      <a href="{{.Arc}}">{{.Text}}</a>
     {{end}}
-    {{else}}
-    {{<p>End</p>}}
-    {{end}}
-    {{end}}
+  {{else}}
+    <p>The end</p>
+  {{end}}
+{{end}}
